@@ -1,0 +1,150 @@
+const SYJONPAGE = {active: true, currentWindow: true, url: "*://moria.umcs.lublin.pl/*"};
+const SYJON_ADDRESS = "://moria.umcs.lublin.pl/";
+
+//
+var webext = typeof chrome !== 'undefined' ? chrome : browser;
+
+// toggles
+var toolbar = document.getElementById("toolbar");
+var rollup  = document.getElementById("rollup");
+var extend  = document.getElementById("extend");
+var lbgroup = document.getElementById("lbgroup");
+var kwgroup = document.getElementById("kwgroup");
+var saveb   = document.getElementById("savebutt");
+
+//
+// Save all settings
+//
+function saveSettings() {
+  webext.storage.local.set({
+    bar: toolbar.checked,
+    roll: rollup.checked,
+    ex: extend.checked,
+    lb: lbgroup.value,
+    kw: kwgroup.value,
+    saved: true
+  });
+}
+
+//
+// Restore all settings
+//
+function restoreSettings() {
+  function onGot(items) {
+    
+    if(!items.saved) {
+      return;
+    }
+    
+    toolbar.checked = items.bar;
+    rollup.checked = items.roll;
+    extend.checked = items.ex;
+    lbgroup.value = parseInt(items.lb);
+    kwgroup.value = parseInt(items.kw);
+    
+    toggleCSS(!toolbar.checked, "toolbar");
+    toggleCSS(rollup.checked, "rollup");
+    toggleCSS(extend.checked, "extended");
+    toggleGroup();
+  }
+  
+  var itemGetter = webext.storage.local.get(null, (items) => { onGot(items); });
+}
+
+//
+// Execute script, inject arguments
+// 
+function execScript(file, params) {
+  var args = [ file, params ];
+  
+  var activeTabSeeker = webext.tabs.query(SYJONPAGE, (tabs) => {
+    webext.tabs.sendMessage(tabs[0].id, {arg: args});
+  }); 
+}
+
+//
+// Insert and remove CSS on condition
+//
+function toggleCSS(condition, css) {
+  if(condition) {
+    execScript("injectCSS", css);
+  } else {
+    execScript("removeCSS", css);
+  }
+  
+  saveSettings();
+};
+
+
+//
+// Execute group toggler script
+//
+function toggleGroup() {
+  execScript("groups", [ lbgroup.value, kwgroup.value ]);
+  
+  saveSettings();
+  
+};
+
+
+//
+// =================
+//
+//    TOGGLES
+// 
+// =================
+//
+
+//
+// Group togglers
+//
+lbgroup.addEventListener( 'change', (e) => {
+  toggleGroup();
+});
+
+kwgroup.addEventListener( 'change', (e) => {
+  toggleGroup();
+});
+
+
+//
+// Toolbar and rollup toggles
+//
+toolbar.addEventListener( 'change', (e) => {
+  toggleCSS(!toolbar.checked, "toolbar");
+});
+
+rollup.addEventListener( 'change', (e) => {
+  toggleCSS(rollup.checked, "rollup");
+});
+
+extend.addEventListener( 'change', (e) => {
+  toggleCSS(extend.checked, "extended");
+});
+
+//
+// Tools triggers
+//
+saveb.addEventListener( 'click', (e) => {
+  
+  var capturing = webext.tabs.captureVisibleTab(null, {format : "png"}, (img) => {
+    var link = document.createElement("a");
+    link.href = img;
+    link.download = "Syjon.png";
+    
+    var evt = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    });
+    
+    !link.dispatchEvent(evt);
+    
+  });
+});
+
+
+//
+// Update
+//
+restoreSettings();

@@ -1,0 +1,7 @@
+#left_containter {
+  right: 0 !important;
+}
+
+#right_containter {
+  display: none !important;
+} 

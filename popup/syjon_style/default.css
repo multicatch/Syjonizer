@@ -1,0 +1,34 @@
+.activity_block {
+  transition: width 0.5s ease, opacity 0.1s ease, z-index 0s linear; 
+  z-index: 1000;
+}
+
+.activity_block:hover {
+  z-index: 1100 !important;
+}
+
+#horizontal_menu ul li ul {
+  z-index: 1111 !important;
+}
+
+.subject_content {
+  font-size: 110%;
+  font-weight: 700;
+}
+
+.bottom_content_containter .room_content a {
+  font-size: 120%;
+}
+
+._syjon_time {
+  margin: 0.7em 0;
+}
+
+._syjon_ignore, 
+._syjon_day_whole_ignore,
+._syjon_day_working_ignore,
+._syjon_day_weekend_ignore,
+._syjon_day_ignore {
+  opacity: 0 !important;
+  left: -100% !important;
+}

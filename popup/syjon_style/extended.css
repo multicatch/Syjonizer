@@ -1,0 +1,77 @@
+._syjon_day_whole_0, 
+._syjon_day_whole_1, 
+._syjon_day_whole_2, 
+._syjon_day_whole_3, 
+._syjon_day_whole_4, 
+._syjon_day_whole_5, 
+._syjon_day_whole_6 {
+  width: 14.2857142857% !important;
+}
+
+._syjon_day_whole_0, 
+._syjon_day_working_0, 
+._syjon_day_weekend_0, 
+._syjon_day_ {
+  left: 0% !important;
+}
+
+._syjon_day_whole_1 {
+  left: 14.2857142857% !important;
+}
+
+._syjon_day_whole_2 {
+  left: 28.5714285714% !important; 
+}
+
+._syjon_day_whole_3 {
+  left: 42.8571428571% !important;
+}
+
+._syjon_day_whole_4 {
+  left: 57.1428571429% !important;
+}
+
+._syjon_day_whole_5 {
+  left: 71.4285714286% !important;
+}
+
+._syjon_day_whole_6 {
+  left: 85.7142857139% !important;
+}
+
+._syjon_day_working_0, 
+._syjon_day_working_1, 
+._syjon_day_working_2, 
+._syjon_day_working_3, 
+._syjon_day_working_4 {
+  width: 20% !important;
+}
+
+._syjon_day_working_1 {
+  left: 20% !important;
+}
+
+._syjon_day_working_2 {
+  left: 40% !important; 
+}
+
+._syjon_day_working_3 {
+  left: 60% !important;
+}
+
+._syjon_day_working_4 {
+  left: 80% !important;
+}
+
+._syjon_day_weekend_0, 
+._syjon_day_weekend_1 {
+  width: 50% !important
+}
+
+._syjon_day_weekend_1 {
+  left: 50% !important;
+}
+
+._syjon_day_ {
+  width: 100% !important;
+}

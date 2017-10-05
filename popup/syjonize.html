@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  
+  <body>
+    <div class="logo">
+      <img class="logoblock" src="../icons/syjonizer-48.png">
+      <h1 class="logoblock" id="title">Syjonizer</h1>
+      <span id="author"><a href="https://cezaryregec.pl">Cezary Regec Design</a></span>
+    </div>
+    
+    <div class="tools">
+      <div class="left">
+      </div>
+      
+      <div class="right">
+        <a href="#" id="savebutt">Zapisz plan</a>
+        <button id="delbutt">Usuń zapis</button>
+      </div>
+      
+    </div>
+    
+    <div class="settings">
+      <div class="groups">
+        <p>
+          <span class="glabel">LB:</span> <input id="lbgroup" class="group" type="number" min="0" value="0">
+        </p>
+
+        <p>
+          <span class="glabel">KW:</span> <input id="kwgroup" class="group" type="number" min="0" value="0">
+        </p>
+      </div>
+      
+       
+      <p>
+        <input id="toolbar" type="checkbox" checked>
+        <label for="toolbar">Pasek boczny</label>
+      </p>
+      
+      <p>
+        <input id="rollup" type="checkbox">
+        <label for="rollup">Rozwijanie zajęć</label>
+      </p>
+      
+      
+      <p>
+        <input id="extend" type="checkbox">
+        <label for="extend">Rozwiń plan</label>
+      </p>
+      
+    </div>
+    
+    <script src="syjonize.js"></script>
+  </body>
+</html>

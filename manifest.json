@@ -1,0 +1,48 @@
+{
+  "manifest_version": 2,
+  "name": "Syjonizer",
+  "version": "0.3.5",
+  
+  "description": "Ogarnia układ planu zajęć",
+  
+  "icons": {
+    "32": "icons/syjonizer-32.png",
+    "48": "icons/syjonizer-48.png",
+    "96": "icons/syjonizer-96.png"
+  },
+  
+  "background": {
+    "scripts": ["syjonizer.js"]
+  },
+  
+  "page_action": {
+    "browser_style": true,
+    "default_icon": {
+      "32": "icons/syjonizer-32.png",
+      "48": "icons/syjonizer-48.png"
+    },
+    "default_title": "Syjonizer",
+    "default_popup": "popup/syjonize.html"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["*://moria.umcs.lublin.pl/*"],
+      "js": ["content_scripts/groups.js", "content_scripts/injectCSS.js", "content_scripts/removeCSS.js", "content_scripts/init.js"]
+    }
+  ],
+  
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "*://moria.umcs.lublin.pl/*",
+    "<all_urls>"
+  ],
+  
+  "web_accessible_resources": [
+    "popup/syjon_style/rollup.css",
+    "popup/syjon_style/toolbar.css",
+    "popup/syjon_style/extended.css"
+  ]
+}

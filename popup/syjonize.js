@@ -48,8 +48,6 @@ function restoreSettings() {
     toggleCSS(rollup.checked, "rollup");
     toggleCSS(extend.checked, "extended");
     toggleGroup();
-    
-    injectCSS(true, default);
   }
   
   var itemGetter = webext.storage.local.get(null, (items) => { onGot(items); });

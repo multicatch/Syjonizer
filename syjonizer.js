@@ -15,7 +15,7 @@ var webext = typeof chrome !== 'undefined' ? chrome : browser;
 // check if we're on a correct page
 //
 function isApplicable(url) {
-  return (url.search(SYJON_ADDRESS) !== -1);
+  return url.includes(SYJON_ADDRESS);
 }
 
 //
@@ -81,7 +81,9 @@ function initPageAction(tab) {
 //
 var gettingAllTabs = webext.tabs.query({}, (tabs) => {
   for (let tab of tabs) {
-    initPageAction(tab);
+    if(tab.url.includes(SYJON_ADDRESS)) {
+      initPageAction(tab);
+    }
   }
 });
 
@@ -90,7 +92,9 @@ var gettingAllTabs = webext.tabs.query({}, (tabs) => {
 //
 webext.tabs.onUpdated.addListener((id, info, tab) => {
   if(info.status === 'complete') {
-    initPageAction(tab);
+    if(tab.url.includes(SYJON_ADDRESS)) {
+      initPageAction(tab);
+    }
   }
 });
 

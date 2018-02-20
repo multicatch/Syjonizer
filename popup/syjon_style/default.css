@@ -9,6 +9,7 @@
 
 .activity_checkbox {
   position: absolute;
+  display: none;
 }
 
 #horizontal_menu ul li ul {
@@ -21,7 +22,11 @@
 }
 
 .activity_block:hover .subject_content {
-  margin-left: 10px;
+  margin-left: 15px;
+}
+
+.activity_block:hover .activity_checkbox {
+  display: block;
 }
 
 .bottom_content_containter .room_content a {

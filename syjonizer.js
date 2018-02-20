@@ -74,6 +74,11 @@ function initPageAction(tab) {
     
     webext.tabs.executeScript(null, {file: "/content_scripts/init.js"});
     initSettings();
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      webext.tabs.executeScript(null, {file: "/content_scripts/init.js"});
+      initSettings();
+    });
   } else {
     webext.pageAction.hide(tab.id);
   }

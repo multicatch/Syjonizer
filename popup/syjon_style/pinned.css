@@ -1,0 +1,7 @@
+.activity_block {
+  display: none;
+}
+
+.pinned_block {
+  display: block !important;
+}

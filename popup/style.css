@@ -83,11 +83,6 @@ a:hover {
   padding-top: 1em;
 }
 
-.settings #filter #filter-trigger {
-  position: absolute;
-  right: 0;
-}
-
 .groups {
   text-align: center;
   

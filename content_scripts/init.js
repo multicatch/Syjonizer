@@ -1,3 +1,4 @@
+const BLOCK_CLASS = "pinned_block";
 let schedule_wrapper = document.getElementById("plantablecontainer");
 
 //
@@ -121,21 +122,27 @@ function assignTime() {
   }
 }
 
-
 //
-// 
+// Injects a set of checkboxes
 //
 function injectCheckboxes() {
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.className = "activity_checkbox";
+  checkbox.addEventListener( 'change', (e) => {
+    if(element.checked) {
+      element.parentElement.classList.add(BLOCK_CLASS);
+    } else {
+      element.parentElement.classList.remove(BLOCK_CLASS);
+    }
+  });
   
   const blocks = document.getElementsByClassName("activity_block");
   
   for(let i = 0; i < blocks.length; i++) {
     var currentCheckbox = checkbox.cloneNode(true);
     currentCheckbox.className += " _chk_" + i;
-      
+    
     if(blocks[i].getElementsByClassName("activity_checkbox").length === 0) {
       blocks[i].appendChild(currentCheckbox);
     }

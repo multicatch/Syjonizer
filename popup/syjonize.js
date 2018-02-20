@@ -96,6 +96,7 @@ function toggleManual() {
     execScript("groups", [ 0, 0 ]);
   }
   
+  toggleCSS(manual.checked, "pinned");
   toggleGroup();
 }
 
@@ -119,7 +120,7 @@ kwgroup.addEventListener( 'change', (e) => {
 });
 
 manual.addEventListener( 'change', (e) => {
-
+  toggleManual();
 });
 
 //

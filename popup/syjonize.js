@@ -11,6 +11,8 @@ var extend  = document.getElementById("extend");
 var lbgroup = document.getElementById("lbgroup");
 var kwgroup = document.getElementById("kwgroup");
 var saveb   = document.getElementById("savebutt");
+var manual  = document.getElementById("manual");
+var filter  = document.getElementById("filter-trigger");
 
 //
 // Save all settings
@@ -80,10 +82,11 @@ function toggleCSS(condition, css) {
 // Execute group toggler script
 //
 function toggleGroup() {
-  execScript("groups", [ lbgroup.value, kwgroup.value ]);
+  if(!manual.checked) {
+    execScript("groups", [ lbgroup.value, kwgroup.value ]);
+  }
   
   saveSettings();
-  
 };
 
 
@@ -105,7 +108,6 @@ lbgroup.addEventListener( 'change', (e) => {
 kwgroup.addEventListener( 'change', (e) => {
   toggleGroup();
 });
-
 
 //
 // Toolbar and rollup toggles

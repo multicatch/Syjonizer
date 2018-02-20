@@ -46,6 +46,14 @@ a:hover {
   font-size: 10px;
 }
 
+.logo #version {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  
+  font-size: 9px;
+}
+
 .tools {
   position: relative;
   width: 15em;
@@ -71,8 +79,21 @@ a:hover {
   position: relative;
 }
 
+.settings #filter {
+  padding-top: 1em;
+}
+
+.settings #filter #filter-trigger {
+  position: absolute;
+  right: 0;
+}
+
 .groups {
   text-align: center;
+  
+  padding-bottom: 1em;
+  margin-bottom: 0;
+  border-bottom: 1px solid #aaa;
 }
 
 .groups p {

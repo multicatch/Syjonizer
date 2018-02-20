@@ -4,7 +4,7 @@ function injectCSS(request, sender, response) {
   if(request.arg[0] !== "injectCSS") 
     return;
   
-  var link = document.createElement("link");
+  const link = document.createElement("link");
   link.href = webext.extension.getURL("/popup/syjon_style/" + request.arg[1] + ".css");
   link.className = request.arg[1];
   link.type = "text/css";

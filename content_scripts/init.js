@@ -132,11 +132,11 @@ function injectCheckboxes() {
   
   const blocks = document.getElementsByClassName("activity_block");
   
-  for(let i = 0; i < blocks.length; i++) 
-    let currentCheckbox = checkbox.cloneNode(true);
+  for(let i = 0; i < blocks.length; i++) {
+    var currentCheckbox = checkbox.cloneNode(true);
     currentCheckbox.className += " _chk_" + i;
       
-    if(blocks[i].getElementsByClassName(checkbox.className).length === 0) {
+    if(blocks[i].getElementsByClassName("activity_checkbox").length === 0) {
       blocks[i].appendChild(currentCheckbox);
     }
   }

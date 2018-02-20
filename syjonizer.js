@@ -26,7 +26,9 @@ function initSettings() {
     var args = [ file, params ];
 
     var activeTabSeeker = webext.tabs.query({active: true, currentWindow: true, url: "*://moria.umcs.lublin.pl/*"}, (tabs) => {
-      webext.tabs.sendMessage(tabs[0].id, {arg: args});
+      tabs.forEach((tab) => {
+        webext.tabs.sendMessage(tab.id, {arg: args});
+      });
     }); 
   }
   
@@ -39,6 +41,9 @@ function initSettings() {
   };
 
   function restoreSettings() {
+    // Default CSS
+    webext.tabs.insertCSS({file: "/popup/syjon_style/default.css"});
+    
     var itemGetter = webext.storage.local.get(null, (items) => {
 
       if(!items.saved)
@@ -52,8 +57,6 @@ function initSettings() {
     });
   };
   
-  // Default CSS
-  webext.tabs.insertCSS({file: "/popup/syjon_style/default.css"});
   // Run scripts
   for(var i = 0; i < content_scripts.length; i++) {
     webext.tabs.executeScript(null, {file: "/content_scripts/" + content_scripts[i] + ".js"}, () => { restoreSettings() });

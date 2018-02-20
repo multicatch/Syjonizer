@@ -1,3 +1,4 @@
 .activity_block:hover {
   width: 400px !important; 
+  min-height: 200px !important;
 }

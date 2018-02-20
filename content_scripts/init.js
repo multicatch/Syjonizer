@@ -1,5 +1,4 @@
-// schedule wrapper
-var wrapper = document.getElementById("plantablecontainer");
+let schedule_wrapper = document.getElementById("plantablecontainer");
 
 //
 // Get DOM property
@@ -12,8 +11,8 @@ function property(e, prop) {
 // Calculate day of week based on position
 //
 function getDay(left, width) {
-  var result  = 0;
-  var percent = left * 100 / parseFloat(property(wrapper, "width"));
+  let result  = 0;
+  let percent = left * 100 / parseFloat(property(schedule_wrapper, "width"));
   
   for(;percent >= Math.floor(width); percent -= width) {
     result++;
@@ -39,9 +38,9 @@ function addClass(el, className) {
 // Assign days of week
 //
 function assignDays(view = 1) {
-  wrapper = document.getElementById("plantablecontainer");
+  schedule_wrapper = document.getElementById("plantablecontainer");
   
-  var blocks = document.getElementsByClassName("activity_block");
+  const blocks = document.getElementsByClassName("activity_block");
   
   // prevent redundancy
   if(blocks.length > 0 && blocks[0].classList.contains("_syjon"))
@@ -50,7 +49,7 @@ function assignDays(view = 1) {
   for(var i = 0; i < blocks.length; i++) {
     addClass(blocks[i], "_syjon");
     
-    var blockClass = "_syjon_day_";
+    let blockClass = "_syjon_day_";
     
     // weekend view
     if(view === 2) {
@@ -75,8 +74,8 @@ function assignDays(view = 1) {
 // Formats time from float
 //
 function formatTime(ftime) {
-  var hour = Math.floor(ftime);
-  var minutes = Math.round(ftime % Math.floor(ftime) * 60); 
+  let hour = Math.floor(ftime);
+  let minutes = Math.round(ftime % Math.floor(ftime) * 60); 
   
   if(minutes >= 60) {
     hour++;
@@ -96,22 +95,22 @@ function formatTime(ftime) {
 // Assign time schedule
 //
 function assignTime() {
-  wrapper = document.getElementById("plantablecontainer");
+  schedule_wrapper = document.getElementById("plantablecontainer");
   
-  var blocks = document.getElementsByClassName("activity_block");
+  const blocks = document.getElementsByClassName("activity_block");
   
-  for(var i = 0; i < blocks.length; i++) {
-    var top    = parseFloat(property(blocks[i], "top"));
-    var height = parseFloat(property(blocks[i], "height"));
+  for(let i = 0; i < blocks.length; i++) {
+    const top    = parseFloat(property(blocks[i], "top"));
+    const height = parseFloat(property(blocks[i], "height"));
     
-    var wrapper_height = parseFloat(property(wrapper, "height"));
+    const wrapper_height = parseFloat(property(schedule_wrapper, "height"));
     
     // schedule time
     if(blocks[i].getElementsByClassName("_syjon_time").length < 1) {
-      var start_time = formatTime(8 + 13 * top/wrapper_height);
-      var end_time = formatTime(8 + 13 * (top + height)/wrapper_height);
+      const start_time = formatTime(8 + 13 * top/wrapper_height);
+      const end_time = formatTime(8 + 13 * (top + height)/wrapper_height);
       
-      var time_wrapper = document.createElement("div");
+      const time_wrapper = document.createElement("div");
       time_wrapper.innerHTML = start_time + " - " + end_time;
       
       addClass(time_wrapper, "_syjon_time");
@@ -123,6 +122,25 @@ function assignTime() {
 }
 
 
+//
+// 
+//
+function injectCheckboxes() {
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.className = "activity_checkbox";
+  
+  const blocks = document.getElementsByClassName("activity_block");
+  
+  for(let i = 0; i < blocks.length; i++) {
+    const tmp = checkbox.cloneNode(true);
+    blocks[i].appendChild(tmp);
+  }
+}
+
+
+
 var days = document.getElementById("weekday_header").children[0].rows[0].cells.length; 
 assignDays(days);
 assignTime();
+injectCheckboxes();

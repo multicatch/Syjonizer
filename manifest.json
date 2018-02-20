@@ -41,6 +41,7 @@
   ],
   
   "web_accessible_resources": [
+    "popup/syjon_style/default.css",
     "popup/syjon_style/rollup.css",
     "popup/syjon_style/toolbar.css",
     "popup/syjon_style/extended.css"

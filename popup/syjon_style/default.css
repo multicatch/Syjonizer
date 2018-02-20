@@ -4,7 +4,11 @@
 }
 
 .activity_block:hover {
-  z-index: 1100 !important;
+  z-index: 1500 !important;
+}
+
+.activity_checkbox {
+  position: absolute;
 }
 
 #horizontal_menu ul li ul {
@@ -14,6 +18,10 @@
 .subject_content {
   font-size: 110%;
   font-weight: 700;
+}
+
+.activity_block:hover .subject_content {
+  margin-left: 10px;
 }
 
 .bottom_content_containter .room_content a {

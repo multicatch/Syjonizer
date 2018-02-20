@@ -179,4 +179,3 @@ webext.storage.local.get(null, (items) => {
 var days = document.getElementById("weekday_header").children[0].rows[0].cells.length; 
 assignDays(days);
 assignTime();
-//injectCheckboxes();

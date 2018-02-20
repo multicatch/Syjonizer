@@ -41,9 +41,6 @@ function initSettings() {
   };
 
   function restoreSettings() {
-    // Default CSS
-    webext.tabs.insertCSS({file: "/popup/syjon_style/default.css"});
-    
     var itemGetter = webext.storage.local.get(null, (items) => {
 
       if(!items.saved)
@@ -72,10 +69,12 @@ function initPageAction(tab) {
     webext.pageAction.setTitle({tabId: tab.id, title: TITLE_APPLY});
     webext.pageAction.show(tab.id);
     
+    webext.tabs.insertCSS({file: "/popup/syjon_style/default.css"});
     webext.tabs.executeScript(null, {file: "/content_scripts/init.js"});
     initSettings();
     
     document.addEventListener('DOMContentLoaded', () => {
+      webext.tabs.insertCSS({file: "/popup/syjon_style/default.css"});
       webext.tabs.executeScript(null, {file: "/content_scripts/init.js"});
       initSettings();
     });

@@ -24,6 +24,7 @@ function saveSettings() {
     ex: extend.checked,
     lb: lbgroup.value,
     kw: kwgroup.value,
+    manual: manual.checked,
     saved: true
   });
 }
@@ -43,11 +44,12 @@ function restoreSettings() {
     extend.checked = items.ex;
     lbgroup.value = parseInt(items.lb);
     kwgroup.value = parseInt(items.kw);
+    manual.checked = items.manual;
     
     toggleCSS(!toolbar.checked, "toolbar");
     toggleCSS(rollup.checked, "rollup");
     toggleCSS(extend.checked, "extended");
-    toggleGroup();
+    toggleManual();
   }
   
   var itemGetter = webext.storage.local.get(null, (items) => { onGot(items); });
@@ -89,6 +91,13 @@ function toggleGroup() {
   saveSettings();
 };
 
+function toggleManual() {
+  if(manual.checked) {
+    execScript("groups", [ 0, 0 ]);
+  }
+  
+  toggleGroup();
+}
 
 //
 // =================
@@ -107,6 +116,10 @@ lbgroup.addEventListener( 'change', (e) => {
 
 kwgroup.addEventListener( 'change', (e) => {
   toggleGroup();
+});
+
+manual.addEventListener( 'change', (e) => {
+
 });
 
 //

@@ -1,5 +1,6 @@
 const BLOCK_CLASS = "pinned_block";
 let schedule_wrapper = document.getElementById("plantablecontainer");
+let settings = {};
 
 //
 // Get DOM property
@@ -123,35 +124,59 @@ function assignTime() {
 }
 
 //
+// Pins parent block
+// 
+function pin(checkbox) {
+  if(checkbox.checked) {
+    checkbox.parentElement.classList.add(BLOCK_CLASS);
+  } else {
+    checkbox.parentElement.classList.remove(BLOCK_CLASS);
+  }
+  
+  var chkClass = checkbox.classList.item(1);
+  
+  webext.storage.local.set({ [chkClass] : checkbox.checked })
+};
+
+//
 // Injects a set of checkboxes
 //
 function injectCheckboxes() {
+
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.className = "activity_checkbox";
-  checkbox.addEventListener( 'change', (e) => {
-    if(element.checked) {
-      element.parentElement.classList.add(BLOCK_CLASS);
-    } else {
-      element.parentElement.classList.remove(BLOCK_CLASS);
-    }
-  });
-  
+
   const blocks = document.getElementsByClassName("activity_block");
   
   for(let i = 0; i < blocks.length; i++) {
+    var chkClass = "_chk_" + i;
+    
     var currentCheckbox = checkbox.cloneNode(true);
-    currentCheckbox.className += " _chk_" + i;
+    currentCheckbox.className += " " + chkClass;
+    
+    if(typeof settings[chkClass] !== undefined) {
+      currentCheckbox.checked = settings[chkClass];
+    }
     
     if(blocks[i].getElementsByClassName("activity_checkbox").length === 0) {
       blocks[i].appendChild(currentCheckbox);
+      
+      document.getElementsByClassName(chkClass)[0].addEventListener('change', (e) => {
+        pin(e.target);
+      });
     }
   }
+  
 }
 
 
+webext.storage.local.get(null, (items) => { 
+  settings = items;
+  injectCheckboxes();
+});
 
 var days = document.getElementById("weekday_header").children[0].rows[0].cells.length; 
 assignDays(days);
 assignTime();
-injectCheckboxes();
+//injectCheckboxes();

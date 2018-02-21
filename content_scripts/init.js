@@ -1,4 +1,5 @@
 const BLOCK_CLASS = "pinned_block";
+//let webext = typeof chrome !== 'undefined' ? chrome : browser;
 let schedule_wrapper = document.getElementById("plantablecontainer");
 let settings = {};
 
@@ -124,6 +125,14 @@ function assignTime() {
 }
 
 //
+// Returns current pageId
+//
+function getPageId() {
+  const locationArray = location.href.split("/");
+  return pageId = "page" + locationArray[locationArray.length - 1];
+}
+
+//
 // Pins parent block
 // 
 function pin(checkbox) {
@@ -134,8 +143,16 @@ function pin(checkbox) {
   }
   
   var chkClass = checkbox.classList.item(1);
+  var pageId = getPageId();
   
-  webext.storage.local.set({ [chkClass] : checkbox.checked })
+  if(typeof settings[pageId] == 'undefined') {
+    settings[pageId] = {};
+  }
+  
+  settings[pageId][chkClass] = checkbox.checked;
+  
+  webext.storage.local.set(settings);
+  
 };
 
 //
@@ -148,6 +165,13 @@ function injectCheckboxes() {
   checkbox.className = "activity_checkbox";
 
   const blocks = document.getElementsByClassName("activity_block");
+  const pageId = getPageId();
+  
+  if(typeof settings[pageId] == 'undefined') {
+    settings[pageId] = {};
+  }
+  
+  var checkboxSettings = settings[pageId];
   
   for(let i = 0; i < blocks.length; i++) {
     var chkClass = "_chk_" + i;
@@ -155,21 +179,23 @@ function injectCheckboxes() {
     var currentCheckbox = checkbox.cloneNode(true);
     currentCheckbox.className += " " + chkClass;
     
-    if(typeof settings[chkClass] !== undefined) {
-      currentCheckbox.checked = settings[chkClass];
+    if(typeof checkboxSettings[chkClass] != 'undefined') {
+      currentCheckbox.checked = checkboxSettings[chkClass];
     }
     
     if(blocks[i].getElementsByClassName("activity_checkbox").length === 0) {
       blocks[i].appendChild(currentCheckbox);
       
-      document.getElementsByClassName(chkClass)[0].addEventListener('change', (e) => {
+      var child = document.getElementsByClassName(chkClass)[0];
+      
+      child.addEventListener('change', (e) => {
         pin(e.target);
       });
+      
+      pin(child);
     }
   }
-  
 }
-
 
 webext.storage.local.get(null, (items) => { 
   settings = items;

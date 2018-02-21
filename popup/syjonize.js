@@ -24,7 +24,7 @@ function saveSettings() {
     ex: extend.checked,
     lb: lbgroup.value,
     kw: kwgroup.value,
-    manual: manual.checked,
+    //manual: manual.checked,
     saved: true
   });
 }
@@ -44,7 +44,7 @@ function restoreSettings() {
     extend.checked = items.ex;
     lbgroup.value = parseInt(items.lb);
     kwgroup.value = parseInt(items.kw);
-    manual.checked = items.manual;
+    //manual.checked = items.manual;
     
     toggleCSS(!toolbar.checked, "toolbar");
     toggleCSS(rollup.checked, "rollup");

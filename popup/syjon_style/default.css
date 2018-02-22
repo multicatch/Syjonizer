@@ -1,15 +1,19 @@
+.activity_block,
+.activity_block * {
+  transition: width 0.5s ease, opacity 0.2s ease, margin 0.1s ease, z-index 0s linear; 
+}
+
 .activity_block {
-  transition: width 0.5s ease, opacity 0.1s ease, z-index 0s linear; 
   z-index: 1000;
 }
 
 .activity_block:hover {
-  z-index: 1500 !important;
+  z-index: 1500;
 }
 
-.activity_checkbox {
+._syjon_activity_checkbox {
   position: absolute;
-  display: none;
+  opacity: 0;
 }
 
 #horizontal_menu ul li ul {
@@ -22,15 +26,20 @@
 }
 
 .activity_block:hover .subject_content {
-  margin-left: 15px;
+  margin-left: 17px;
 }
 
-.activity_block:hover .activity_checkbox {
-  display: block;
+.activity_block:hover ._syjon_activity_checkbox {
+  opacity: 1;
 }
 
 .bottom_content_containter .room_content a {
   font-size: 110%;
+}
+
+._syjon_hidden_block {
+  opacity: 0;
+  z-index: 1 !important;
 }
 
 ._syjon_time {

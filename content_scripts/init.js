@@ -1,4 +1,5 @@
-const BLOCK_CLASS = "pinned_block";
+const BLOCK_CLASS = "_syjon_pinned_block";
+const CHECKBOX_CLASS = "_syjon_activity_checkbox";
 //let webext = typeof chrome !== 'undefined' ? chrome : browser;
 let schedule_wrapper = document.getElementById("plantablecontainer");
 let settings = {};
@@ -162,7 +163,7 @@ function injectCheckboxes() {
 
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
-  checkbox.className = "activity_checkbox";
+  checkbox.className = CHECKBOX_CLASS;
 
   const blocks = document.getElementsByClassName("activity_block");
   const pageId = getPageId();
@@ -183,7 +184,7 @@ function injectCheckboxes() {
       currentCheckbox.checked = checkboxSettings[chkClass];
     }
     
-    if(blocks[i].getElementsByClassName("activity_checkbox").length === 0) {
+    if(blocks[i].getElementsByClassName(CHECKBOX_CLASS).length === 0) {
       blocks[i].appendChild(currentCheckbox);
       
       var child = document.getElementsByClassName(chkClass)[0];

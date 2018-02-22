@@ -1,3 +1,4 @@
+const HIDDEN_CLASS = "_syjon_hidden_block";
 var webext = typeof chrome !== 'undefined' ? chrome : browser;
 
 function updateBlocks(request, sender, response) {
@@ -14,7 +15,7 @@ function updateBlocks(request, sender, response) {
   for(var i = 0; i < blocks.length; i++) {
     var block = blocks[i]; // current block
     
-    block.style.opacity = "1"; // default opacity
+    block.classList.remove(HIDDEN_CLASS);
     
     var type = block.getElementsByClassName("activity_content")[0].getElementsByClassName("bottom_content_containter")[0].getElementsByClassName("type_content")[0].children[0].innerHTML;
     
@@ -27,12 +28,12 @@ function updateBlocks(request, sender, response) {
     
     // LB check
     if(type === "LB" && group != lb && lb !== "0") {
-      block.style.opacity = "0";
+      block.classList.add(HIDDEN_CLASS);
     }
     
     // KW check
     if(type === "KW" && group != kw && kw !== "0") {
-      block.style.opacity = "0";
+      block.classList.add(HIDDEN_CLASS);
     }
   }
 }

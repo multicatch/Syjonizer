@@ -1,7 +1,15 @@
-.activity_block {
-  display: none;
+.activity_block,
+.activity_block:hover {
+  opacity: 0;
+  z-index: 1 !important;
 }
 
-.pinned_block {
-  display: block !important;
+._syjon_pinned_block {
+  opacity: 1;
+  z-index: 1000 !important;
+}
+
+._syjon_pinned_block:hover {
+  opacity: 1;
+  z-index: 1500 !important;
 }

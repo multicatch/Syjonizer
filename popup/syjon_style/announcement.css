@@ -1,0 +1,5 @@
+._syjon_announcement,
+._syjon_announcement:hover {
+  opacity: 1;
+  z-index: 1500 !important;
+}

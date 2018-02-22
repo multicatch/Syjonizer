@@ -12,7 +12,7 @@ var lbgroup = document.getElementById("lbgroup");
 var kwgroup = document.getElementById("kwgroup");
 var saveb   = document.getElementById("savebutt");
 var manual  = document.getElementById("manual");
-var filter  = document.getElementById("filter-trigger");
+var info    = document.getElementById("manual-pr");
 
 //
 // Save all settings
@@ -24,7 +24,8 @@ function saveSettings() {
     ex: extend.checked,
     lb: lbgroup.value,
     kw: kwgroup.value,
-    //manual: manual.checked,
+    manual: manual.checked,
+    info: info.checked,
     saved: true
   });
 }
@@ -44,7 +45,8 @@ function restoreSettings() {
     extend.checked = items.ex;
     lbgroup.value = parseInt(items.lb);
     kwgroup.value = parseInt(items.kw);
-    //manual.checked = items.manual;
+    manual.checked = items.manual;
+    info.checked = items.info;
     
     toggleCSS(!toolbar.checked, "toolbar");
     toggleCSS(rollup.checked, "rollup");
@@ -91,13 +93,27 @@ function toggleGroup() {
   saveSettings();
 };
 
+//
+// Manual composition toggler
+//
 function toggleManual() {
   if(manual.checked) {
     execScript("groups", [ 0, 0 ]);
   }
   
+  info.disabled = !manual.checked;
   toggleCSS(manual.checked, "pinned");
   toggleGroup();
+  toggleAnnouncement();
+}
+
+//
+// Announcement visibility toggler
+//
+function toggleAnnouncement() {
+  toggleCSS(info.checked && !info.disabled, "announcement");
+  
+  saveSettings();
 }
 
 //
@@ -121,6 +137,10 @@ kwgroup.addEventListener( 'change', (e) => {
 
 manual.addEventListener( 'change', (e) => {
   toggleManual();
+});
+
+info.addEventListener( 'change', (e) => {
+  toggleAnnouncement();
 });
 
 //

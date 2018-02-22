@@ -1,4 +1,5 @@
-const BLOCK_CLASS = "_syjon_pinned_block";
+const PINNED_CLASS = "_syjon_pinned_block";
+const INFO_CLASS = "_syjon_announcement";
 const CHECKBOX_CLASS = "_syjon_activity_checkbox";
 //let webext = typeof chrome !== 'undefined' ? chrome : browser;
 let schedule_wrapper = document.getElementById("plantablecontainer");
@@ -138,9 +139,9 @@ function getPageId() {
 // 
 function pin(checkbox) {
   if(checkbox.checked) {
-    checkbox.parentElement.classList.add(BLOCK_CLASS);
+    checkbox.parentElement.classList.add(PINNED_CLASS);
   } else {
-    checkbox.parentElement.classList.remove(BLOCK_CLASS);
+    checkbox.parentElement.classList.remove(PINNED_CLASS);
   }
   
   var chkClass = checkbox.classList.item(1);
@@ -198,6 +199,23 @@ function injectCheckboxes() {
   }
 }
 
+//
+// Add classes to announcement blocks
+//
+function addAnnouncementClass() {
+  const blocks = document.getElementsByClassName("activity_block");
+  
+  for(var i = 0; i < blocks.length; i++) {
+    var block = blocks[i]; // current block
+    
+    var type = block.getElementsByClassName("activity_content")[0].getElementsByClassName("bottom_content_containter")[0].getElementsByClassName("type_content")[0].children[0].innerHTML; 
+    
+    if(type === "PR") {
+      block.classList.add(INFO_CLASS);
+    }
+  }
+}
+
 webext.storage.local.get(null, (items) => { 
   settings = items;
   injectCheckboxes();
@@ -206,3 +224,4 @@ webext.storage.local.get(null, (items) => {
 var days = document.getElementById("weekday_header").children[0].rows[0].cells.length; 
 assignDays(days);
 assignTime();
+addAnnouncementClass();

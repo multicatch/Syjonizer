@@ -1,6 +1,7 @@
 const PINNED_CLASS = "_syjon_pinned_block";
 const INFO_CLASS = "_syjon_announcement";
 const CHECKBOX_CLASS = "_syjon_activity_checkbox";
+const SCHEDULE_CLASS = "plancontainer";
 const DAYS = [
     "poniedziałek",
     "wtorek",
@@ -11,7 +12,7 @@ const DAYS = [
     "niedziela"
 ];
 //let webext = typeof chrome !== 'undefined' ? chrome : browser;
-let schedule_wrapper = document.getElementById("plancontainer");
+let schedule_wrapper = document.getElementsByClassName(SCHEDULE_CLASS)[0];
 let settings = {};
 
 //
@@ -52,7 +53,7 @@ function addClass(el, className) {
 // Assign days of week
 //
 function assignDays() {
-  schedule_wrapper = document.getElementById("plancontainer");
+  schedule_wrapper = document.getElementsByClassName(SCHEDULE_CLASS)[0];
   
   const blocks = document.getElementsByClassName("activity_block");
   
@@ -61,8 +62,6 @@ function assignDays() {
     return;
   
   for(let i = 0; i < blocks.length; i++) {
-    console.log(i);
-
     addClass(blocks[i], "_syjon");
 
     const day = blocks[i].dataset.weekdaytext;
@@ -98,10 +97,10 @@ function formatTime(ftime) {
 // Assign time schedule
 //
 function assignTime() {
-  schedule_wrapper = document.getElementById("plantablecontainer");
+  schedule_wrapper = document.getElementsByClassName(SCHEDULE_CLASS)[0];
   
   const blocks = document.getElementsByClassName("activity_block");
-  
+
   for(let i = 0; i < blocks.length; i++) {
     const top    = parseFloat(property(blocks[i], "top"));
     const height = parseFloat(property(blocks[i], "height"));
@@ -113,12 +112,12 @@ function assignTime() {
       const start_time = formatTime(8 + 13 * top/wrapper_height);
       const end_time = formatTime(8 + 13 * (top + height)/wrapper_height);
       
-      const time_wrapper = document.createElement("div");
+      const time_wrapper = document.createElement("li");
       time_wrapper.innerHTML = start_time + " - " + end_time;
       
       addClass(time_wrapper, "_syjon_time");
 
-      blocks[i].getElementsByClassName("activity_content")[0].appendChild(time_wrapper);
+      blocks[i].getElementsByClassName("itemlist")[0].getElementsByTagName("ul")[0].appendChild(time_wrapper);
     }
 
   }

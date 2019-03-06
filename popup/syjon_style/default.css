@@ -1,6 +1,6 @@
 .activity_block,
 .activity_block * {
-  transition: width 0.5s ease, opacity 0.2s ease, margin 0.1s ease, z-index 0s linear; 
+  transition: width 0.5s ease, opacity 0.2s ease, margin 0.1s ease, z-index 0s linear, height 0.2s ease;
 }
 
 .activity_block {
@@ -16,6 +16,20 @@
   opacity: 0;
   left: 5px;
   top: 7px;
+}
+
+._syjon_item_lecturer {
+  font-weight: bold;
+}
+
+li._syjon_item_studies a {
+  color: #727272;
+}
+
+._syjon_item_lecturer,
+._syjon_item_studies {
+  height: 0;
+  opacity: 0;
 }
 
 #horizontal_menu ul li ul {
@@ -35,7 +49,13 @@
   opacity: 1;
 }
 
-.bottom_content_containter .room_content a {
+.activity_block:hover ._syjon_item_lecturer,
+.activity_block:hover ._syjon_item_studies {
+  height: 14px;
+  opacity: 1;
+}
+
+.activity_block .room a {
   font-size: 110%;
 }
 

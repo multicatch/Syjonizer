@@ -94,6 +94,34 @@ function formatTime(ftime) {
 }
 
 //
+// Mark information in block
+//
+function markBlockInfo() {
+  schedule_wrapper = document.getElementsByClassName(SCHEDULE_CLASS)[0];
+
+  const blocks = document.getElementsByClassName("activity_block");
+
+  for(let i = 0; i < blocks.length; i++) {
+    const list = blocks[i].getElementsByClassName("itemlist")[0].getElementsByTagName("ul")[0];
+
+    // schedule time
+    if(!list.classList.contains("_syjon_itemlist")) {
+      const elements = list.getElementsByTagName("li");
+
+      for (let j = 0; j < elements.length; j++) {
+        if (j === 0) {
+          addClass(elements[j], "_syjon_item_lecturer");
+        } else {
+          addClass(elements[j], "_syjon_item_studies")
+        }
+      }
+
+      addClass(list, "_syjon_itemlist");
+    }
+  }
+}
+
+//
 // Assign time schedule
 //
 function assignTime() {
@@ -219,5 +247,6 @@ webext.storage.local.get(null, (items) => {
 });
 
 assignDays();
+markBlockInfo();
 assignTime();
 addAnnouncementClass();

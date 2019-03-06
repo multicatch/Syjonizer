@@ -122,6 +122,21 @@ function markBlockInfo() {
 }
 
 //
+// Add room background gradient
+//
+function makeRoomGradient() {
+  schedule_wrapper = document.getElementsByClassName(SCHEDULE_CLASS)[0];
+
+  const blocks = document.getElementsByClassName("activity_block");
+
+  for(let i = 0; i < blocks.length; i++) {
+    const backgroundColor = blocks[i].style.backgroundColor;
+    const room = blocks[i].getElementsByClassName("room")[0];
+    room.style.background = "linear-gradient(transparent 0%, " + backgroundColor + " 70%)";
+  }
+}
+
+//
 // Assign time schedule
 //
 function assignTime() {
@@ -249,4 +264,5 @@ webext.storage.local.get(null, (items) => {
 assignDays();
 markBlockInfo();
 assignTime();
-addAnnouncementClass();
+makeRoomGradient();
+//addAnnouncementClass();

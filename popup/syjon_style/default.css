@@ -55,6 +55,14 @@ li._syjon_item_studies a {
   opacity: 1;
 }
 
+.activity_block .activity_group {
+  z-index: -1;
+}
+
+.activity_block .room {
+  width: 100%;
+}
+
 .activity_block .room a {
   font-size: 110%;
 }

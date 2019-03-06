@@ -1,8 +1,17 @@
 const PINNED_CLASS = "_syjon_pinned_block";
 const INFO_CLASS = "_syjon_announcement";
 const CHECKBOX_CLASS = "_syjon_activity_checkbox";
+const DAYS = [
+    "poniedziałek",
+    "wtorek",
+    "środa",
+    "czwartek",
+    "piątek",
+    "sobota",
+    "niedziela"
+];
 //let webext = typeof chrome !== 'undefined' ? chrome : browser;
-let schedule_wrapper = document.getElementById("plantablecontainer");
+let schedule_wrapper = document.getElementById("plancontainer");
 let settings = {};
 
 //
@@ -42,8 +51,8 @@ function addClass(el, className) {
 //
 // Assign days of week
 //
-function assignDays(view = 1) {
-  schedule_wrapper = document.getElementById("plantablecontainer");
+function assignDays() {
+  schedule_wrapper = document.getElementById("plancontainer");
   
   const blocks = document.getElementsByClassName("activity_block");
   
@@ -51,26 +60,15 @@ function assignDays(view = 1) {
   if(blocks.length > 0 && blocks[0].classList.contains("_syjon"))
     return;
   
-  for(var i = 0; i < blocks.length; i++) {
-    addClass(blocks[i], "_syjon");
-    
-    let blockClass = "_syjon_day_";
-    
-    // weekend view
-    if(view === 2) {
-      blockClass += "weekend_" + getDay(parseFloat(property(blocks[i], "left")), 50);
-    }
-    
-    // working days view
-    if(view === 5) {
-      blockClass += "working_" + getDay(parseFloat(property(blocks[i], "left")), 20);
-    }
+  for(let i = 0; i < blocks.length; i++) {
+    console.log(i);
 
-    // whole week view
-    if(view === 7) {
-      blockClass += "whole_" + getDay(parseFloat(property(blocks[i], "left")), 14.285714286);
-    }
-    
+    addClass(blocks[i], "_syjon");
+
+    const day = blocks[i].dataset.weekdaytext;
+    const dayNumber = DAYS.indexOf(day);
+    const blockClass = "_syjon_day_whole_" + dayNumber;
+
     addClass(blocks[i], blockClass);
   }
 }
@@ -221,7 +219,6 @@ webext.storage.local.get(null, (items) => {
   injectCheckboxes();
 });
 
-var days = document.getElementById("weekday_header").children[0].rows[0].cells.length; 
-assignDays(days);
+assignDays();
 assignTime();
 addAnnouncementClass();

@@ -1,7 +1,7 @@
-#left_containter {
+#main {
   right: 0 !important;
 }
 
-#right_containter {
+#side {
   display: none !important;
 } 

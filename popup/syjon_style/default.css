@@ -14,18 +14,20 @@
 ._syjon_activity_checkbox {
   position: absolute;
   opacity: 0;
+  left: 5px;
+  top: 7px;
 }
 
 #horizontal_menu ul li ul {
   z-index: 1111 !important;
 }
 
-.subject_content {
+.subject {
   font-size: 110%;
   font-weight: 700;
 }
 
-.activity_block:hover .subject_content {
+.activity_block:hover .subject {
   margin-left: 17px;
 }
 

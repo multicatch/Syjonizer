@@ -17,7 +17,7 @@ function updateBlocks(request, sender, response) {
     
     block.classList.remove(HIDDEN_CLASS);
     
-    var type = block.getElementsByClassName("activity_content")[0].getElementsByClassName("bottom_content_containter")[0].getElementsByClassName("type_content")[0].children[0].innerHTML;
+    var type = block.dataset.typename;
     
     var group = block.getElementsByClassName("activity_group")[0];
     
@@ -27,12 +27,12 @@ function updateBlocks(request, sender, response) {
     }
     
     // LB check
-    if(type === "LB" && group != lb && lb !== "0") {
+    if(type === "laboratorium" && group != lb && lb !== "0") {
       block.classList.add(HIDDEN_CLASS);
     }
     
     // KW check
-    if(type === "KW" && group != kw && kw !== "0") {
+    if(type === "konwersatorium" && group != kw && kw !== "0") {
       block.classList.add(HIDDEN_CLASS);
     }
   }

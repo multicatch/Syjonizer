@@ -227,9 +227,9 @@ function addAnnouncementClass() {
   for(var i = 0; i < blocks.length; i++) {
     var block = blocks[i]; // current block
     
-    var type = block.getElementsByClassName("activity_content")[0].getElementsByClassName("bottom_content_containter")[0].getElementsByClassName("type_content")[0].children[0].innerHTML; 
+    var type = block.dataset.typename;
     
-    if(type === "PR") {
+    if(type === "praktyki") {
       block.classList.add(INFO_CLASS);
     }
   }
@@ -244,4 +244,4 @@ assignDays();
 markBlockInfo();
 assignTime();
 makeRoomGradient();
-//addAnnouncementClass();
+addAnnouncementClass();

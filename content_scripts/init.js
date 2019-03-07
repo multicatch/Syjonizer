@@ -73,27 +73,6 @@ function assignDays() {
 }
 
 //
-// Formats time from float
-//
-function formatTime(ftime) {
-  let hour = Math.floor(ftime);
-  let minutes = Math.round(ftime % Math.floor(ftime) * 60); 
-  
-  if(minutes >= 60) {
-    hour++;
-    minutes %= 60;
-  }
-  
-  if(minutes / 10 === 0) {
-    minutes = "0" + minutes;
-  }
-  
-  
-  return hour + ":" + minutes;
-  
-}
-
-//
 // Mark information in block
 //
 function markBlockInfo() {
@@ -152,8 +131,8 @@ function assignTime() {
     
     // schedule time
     if(blocks[i].getElementsByClassName("_syjon_time").length < 1) {
-      const start_time = formatTime(8 + 13 * top/wrapper_height);
-      const end_time = formatTime(8 + 13 * (top + height)/wrapper_height);
+      const start_time = blocks[i].dataset.starttime;
+      const end_time = blocks[i].dataset.endtime;
       
       const time_wrapper = document.createElement("li");
       time_wrapper.innerHTML = start_time + " - " + end_time;

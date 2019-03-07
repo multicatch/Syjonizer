@@ -97,3 +97,8 @@ li._syjon_item_studies a {
 .details_block {
   display: none;
 }
+
+#side .dropdown-menu {
+  transform: translate3d(0px, 32px, 0px) !important;
+  z-index: 1000000 !important;
+}

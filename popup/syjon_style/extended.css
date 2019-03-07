@@ -75,3 +75,14 @@
 ._syjon_day_ {
   width: 100% !important;
 }
+
+._syjon_day_single_0,
+._syjon_day_single_1,
+._syjon_day_single_2,
+._syjon_day_single_3,
+._syjon_day_single_4,
+._syjon_day_single_5,
+._syjon_day_single_6 {
+  left: 0 !important;
+  width: 100% !important;
+}

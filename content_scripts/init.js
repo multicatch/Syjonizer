@@ -52,7 +52,7 @@ function addClass(el, className) {
 //
 // Assign days of week
 //
-function assignDays() {
+function assignDays(days = 7) {
   schedule_wrapper = document.getElementsByClassName(SCHEDULE_CLASS)[0];
   
   const blocks = document.getElementsByClassName("activity_block");
@@ -66,9 +66,24 @@ function assignDays() {
 
     const day = blocks[i].dataset.weekdaytext;
     const dayNumber = DAYS.indexOf(day);
-    const blockClass = "_syjon_day_whole_" + dayNumber;
+    let blockClass = "_syjon_day_"
+    if (days === 7) {
+      blockClass += "whole_";
+    }
 
-    addClass(blocks[i], blockClass);
+    if (days === 5) {
+      blockClass += "working_"
+    }
+
+    if (days === 2) {
+      blockClass += "weekend_";
+    }
+
+    if (days === 1) {
+      blockClass += "single_";
+    }
+
+    addClass(blocks[i], blockClass + dayNumber);
   }
 }
 
@@ -174,7 +189,7 @@ function pin(checkbox) {
   
   webext.storage.local.set(settings);
   
-};
+}
 
 //
 // Injects a set of checkboxes
@@ -240,8 +255,35 @@ webext.storage.local.get(null, (items) => {
   injectCheckboxes();
 });
 
-assignDays();
-markBlockInfo();
-assignTime();
-makeRoomGradient();
-addAnnouncementClass();
+function initSyjon() {
+  const days = document.getElementsByClassName("weekdayentry").length;
+  assignDays(days);
+  markBlockInfo();
+  assignTime();
+  makeRoomGradient();
+  addAnnouncementClass();
+}
+
+//
+// Inject script to override set weekday
+//
+function overrideSetWeekday() {
+  const script = document.createElement("script");
+  script.src = webext.extension.getURL("/popup/syjon_scripts/setWeekday.js");
+  document.getElementsByTagName("body")[0].appendChild(script);
+}
+
+overrideSetWeekday();
+initSyjon();
+
+window.addEventListener("message", function(event) {
+
+  if (event.source !== window)
+    return;
+
+  if (event.data.action && (event.data.action === "INIT_SYJON")) {
+    console.log("Received reload request");
+    initSyjon();
+    injectCheckboxes();
+  }
+}, false);

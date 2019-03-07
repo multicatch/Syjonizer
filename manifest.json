@@ -29,7 +29,12 @@
   "content_scripts": [
     {
       "matches": ["*://moria.umcs.lublin.pl/*"],
-      "js": ["content_scripts/groups.js", "content_scripts/injectCSS.js", "content_scripts/removeCSS.js", "content_scripts/init.js"]
+      "js": [
+        "content_scripts/groups.js",
+        "content_scripts/injectCSS.js",
+        "content_scripts/removeCSS.js",
+        "content_scripts/init.js"
+      ]
     }
   ],
   
@@ -45,6 +50,7 @@
     "popup/syjon_style/toolbar.css",
     "popup/syjon_style/pinned.css",
     "popup/syjon_style/extended.css",
-    "popup/syjon_style/announcement.css"
+    "popup/syjon_style/announcement.css",
+    "popup/syjon_scripts/setWeekday.js"
   ]
 }

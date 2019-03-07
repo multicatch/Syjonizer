@@ -207,12 +207,17 @@ function injectCheckboxes() {
     settings[pageId] = {};
   }
   
-  var checkboxSettings = settings[pageId];
+  let checkboxSettings = settings[pageId];
   
   for(let i = 0; i < blocks.length; i++) {
-    var chkClass = "_chk_" + i;
+    let time = blocks[i].dataset.starttime + "" + blocks[i].dataset.endtime;
+    time = time.replace(/:/g, "");
+    const day = DAYS.indexOf(blocks[i].dataset.weekdaytext);
+    let room = blocks[i].getElementsByClassName("room")[0].getElementsByTagName("a")[0].innerHTML;
+    room = room.replace(/[^0-9a-zA-Z]/g, "");
+    let chkClass = "_chk_" + day + "_" + time + "_" + room;
     
-    var currentCheckbox = checkbox.cloneNode(true);
+    const currentCheckbox = checkbox.cloneNode(true);
     currentCheckbox.className += " " + chkClass;
     
     if(typeof checkboxSettings[chkClass] != 'undefined') {
@@ -222,7 +227,7 @@ function injectCheckboxes() {
     if(blocks[i].getElementsByClassName(CHECKBOX_CLASS).length === 0) {
       blocks[i].appendChild(currentCheckbox);
       
-      var child = document.getElementsByClassName(chkClass)[0];
+      let child = document.getElementsByClassName(chkClass)[0];
       
       child.addEventListener('change', (e) => {
         pin(e.target);

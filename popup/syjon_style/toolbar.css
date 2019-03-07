@@ -26,3 +26,7 @@
   top: calc(50% - 12px);
   color: #b0b0b0;
 }
+
+#side:hover .container-fluid:before {
+  content: '»';
+}

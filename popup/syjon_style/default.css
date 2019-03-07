@@ -93,3 +93,7 @@ li._syjon_item_studies a {
   opacity: 0 !important;
   left: -100% !important;
 }
+
+.details_block {
+  display: none;
+}

@@ -1,3 +1,12 @@
+#main {
+  transition: right 0.5s ease;
+}
+
+div#side {
+  position: absolute;
+  transition: right 0.5s ease;
+}
+
 .activity_block,
 .activity_block * {
   transition: width 0.5s ease, opacity 0.2s ease, margin 0.1s ease, z-index 0s linear, height 0.2s ease;

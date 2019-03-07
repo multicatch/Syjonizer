@@ -1,7 +1,28 @@
 #main {
-  right: 0 !important;
+  right: 20px !important;
 }
 
 #side {
-  display: none !important;
-} 
+  padding-left: 10px;
+  right: -300px;
+  z-index: 5000;
+}
+
+#side:hover {
+  right: 0;
+}
+
+#side .searchtable tbody {
+  margin-left: 20px;
+  width: 300px;
+  border-left: 1px solid #e0e0e0;
+}
+
+#side .container-fluid:before {
+  content: '«';
+  position: absolute;
+  font-size: 24px;
+  left: 2px;
+  top: calc(50% - 12px);
+  color: #b0b0b0;
+}

@@ -172,23 +172,26 @@ function getPageId() {
 // Pins parent block
 // 
 function pin(checkbox) {
-  if(checkbox.checked) {
-    checkbox.parentElement.classList.add(PINNED_CLASS);
-  } else {
-    checkbox.parentElement.classList.remove(PINNED_CLASS);
-  }
-  
-  var chkClass = checkbox.classList.item(1);
-  var pageId = getPageId();
-  
-  if(typeof settings[pageId] == 'undefined') {
-    settings[pageId] = {};
-  }
-  
-  settings[pageId][chkClass] = checkbox.checked;
-  
-  webext.storage.local.set(settings);
-  
+  webext.storage.local.get(null, (items) => {
+    settings = items;
+
+    if (checkbox.checked) {
+      checkbox.parentElement.classList.add(PINNED_CLASS);
+    } else {
+      checkbox.parentElement.classList.remove(PINNED_CLASS);
+    }
+
+    const chkClass = checkbox.classList.item(1);
+    const pageId = getPageId();
+
+    if (typeof settings[pageId] == 'undefined') {
+      settings[pageId] = {};
+    }
+
+    settings[pageId][chkClass] = checkbox.checked;
+
+    webext.storage.local.set(settings);
+  });
 }
 
 //
@@ -210,12 +213,13 @@ function injectCheckboxes() {
   let checkboxSettings = settings[pageId];
   
   for(let i = 0; i < blocks.length; i++) {
+    const timetable = location.href.substr(location.href.lastIndexOf('/') + 1).replace(/[^0-9]/g, "");
     let time = blocks[i].dataset.starttime + "" + blocks[i].dataset.endtime;
     time = time.replace(/:/g, "");
     const day = DAYS.indexOf(blocks[i].dataset.weekdaytext);
     let room = blocks[i].getElementsByClassName("room")[0].getElementsByTagName("a")[0].innerHTML;
     room = room.replace(/[^0-9a-zA-Z]/g, "");
-    let chkClass = "_chk_" + day + "_" + time + "_" + room;
+    let chkClass = "_chk_" + timetable + "_" + day + "_" + time + "_" + room;
     
     const currentCheckbox = checkbox.cloneNode(true);
     currentCheckbox.className += " " + chkClass;

@@ -1,6 +1,8 @@
 const SYJONPAGE = {active: true, currentWindow: true, url: "*://moria.umcs.lublin.pl/*"};
 const SYJON_ADDRESS = "://moria.umcs.lublin.pl/";
 
+let PAGE_TITLE = "Plan_zajec_UMCS";
+
 //
 var webext = typeof chrome !== 'undefined' ? chrome : browser;
 
@@ -166,7 +168,7 @@ saveb.addEventListener( 'click', (e) => {
   var capturing = webext.tabs.captureVisibleTab(null, {format : "png"}, (img) => {
     var link = document.createElement("a");
     link.href = img;
-    link.download = "Syjon.png";
+    link.download = PAGE_TITLE.replace(/[^a-zA-Z0-9]/g, "_") + ".png";
     
     var evt = new MouseEvent('click', {
       bubbles: true,
@@ -184,3 +186,7 @@ saveb.addEventListener( 'click', (e) => {
 // Update
 //
 restoreSettings();
+
+webext.tabs.query({ active:true, currentWindow:true },function(tabs){
+  PAGE_TITLE = tabs[0].title.replace("Plan zajęć - ", "");
+});

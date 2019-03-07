@@ -3,7 +3,7 @@
 }
 
 div#side {
-  position: absolute;
+  position: fixed;
   transition: right 0.5s ease;
 }
 

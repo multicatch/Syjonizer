@@ -95,7 +95,7 @@ li._syjon_item_studies a {
 }
 
 .details_block {
-  display: none;
+  display: none !important;
 }
 
 #side .dropdown-menu {

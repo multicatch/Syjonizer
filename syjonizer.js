@@ -50,6 +50,8 @@ function initSettings() {
       toggleCSS(items.roll, "rollup");
       toggleCSS(items.ex, "extended");
       sendMsg("groups", [items.lb, items.kw]);
+      toggleCSS(items.manual, "pinned");
+      toggleCSS(items.manual && items.info, "announcement");
 
     });
   };
@@ -84,10 +86,10 @@ function initPageAction(tab) {
 }
 
 //
-// init on all tabs
+// init when tabs update
 //
-var gettingAllTabs = webext.tabs.query({}, (tabs) => {
-  for (let tab of tabs) {
+webext.tabs.onUpdated.addListener((id, info, tab) => {
+  if(info.status === 'complete') {
     if(tab.url.includes(SYJON_ADDRESS)) {
       initPageAction(tab);
     }
@@ -95,10 +97,10 @@ var gettingAllTabs = webext.tabs.query({}, (tabs) => {
 });
 
 //
-// init when tabs update
+// init on all tabs
 //
-webext.tabs.onUpdated.addListener((id, info, tab) => {
-  if(info.status === 'complete') {
+webext.tabs.query({}, (tabs) => {
+  for (let tab of tabs) {
     if(tab.url.includes(SYJON_ADDRESS)) {
       initPageAction(tab);
     }

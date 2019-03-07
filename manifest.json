@@ -42,7 +42,8 @@
     "activeTab",
     "tabs",
     "storage",
-    "*://moria.umcs.lublin.pl/*"
+    "*://moria.umcs.lublin.pl/*",
+    "<all_urls>"
   ],
   
   "web_accessible_resources": [

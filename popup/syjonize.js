@@ -48,7 +48,7 @@ function restoreSettings() {
     manual.checked = items.manual;
     info.checked = items.info;
     
-    toggleCSS(!toolbar.checked, "toolbar");
+    toggleCSS(toolbar.checked, "toolbar");
     toggleCSS(rollup.checked, "rollup");
     toggleCSS(extend.checked, "extended");
     toggleManual();
@@ -147,7 +147,7 @@ info.addEventListener( 'change', (e) => {
 // Toolbar and rollup toggles
 //
 toolbar.addEventListener( 'change', (e) => {
-  toggleCSS(!toolbar.checked, "toolbar");
+  toggleCSS(toolbar.checked, "toolbar");
 });
 
 rollup.addEventListener( 'change', (e) => {

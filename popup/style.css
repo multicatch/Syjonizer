@@ -8,7 +8,7 @@ body {
   
   min-width: 15em;
   max-width: 15em;
-  min-height: 20em;
+  min-height: 25em;
 }
 
 a {
@@ -114,4 +114,36 @@ a:hover {
 
 #delbutt {
   display: none;
+}
+
+.secondary {
+  color: #666666;
+  font-size: 90%;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  min-width: 120px;
+  max-width: 100%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -50%;
+  position: absolute;
+  z-index: 1;
+
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

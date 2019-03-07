@@ -46,7 +46,7 @@ function initSettings() {
       if(!items.saved)
         return;
 
-      toggleCSS(!items.bar, "toolbar");
+      toggleCSS(items.bar, "toolbar");
       toggleCSS(items.roll, "rollup");
       toggleCSS(items.ex, "extended");
       sendMsg("groups", [items.lb, items.kw]);

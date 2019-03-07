@@ -38,7 +38,11 @@
         <div id="filter">
           <p> 
             <input id="manual" type="checkbox">
-            <label for="manual">Ręcznie (tylko przypięte)</label>
+            <label for="manual">
+              <span class="tooltip">Ręcznie
+                <span class="tooltiptext">Z planu zostaną usunięte niezaznaczone bloczki</span>
+              </span>
+            </label>
           </p>
 
           <p>
@@ -50,19 +54,23 @@
       
        
       <p>
-        <input id="toolbar" type="checkbox" checked>
-        <label for="toolbar">Pasek boczny</label>
+        <input id="toolbar" type="checkbox">
+        <label for="toolbar">Autoukrywanie paska</label>
       </p>
       
       <p>
         <input id="rollup" type="checkbox">
-        <label for="rollup">Rozwijanie zajęć</label>
+        <label for="rollup">
+          <span class="tooltip">Rozwijanie bloczków
+            <span class="tooltiptext">Po najechaniu na bloczek, zostanie on rozwinięty, aby pokazać więcej informacji</span>
+          </span>
+        </label>
       </p>
       
       
       <p>
         <input id="extend" type="checkbox">
-        <label for="extend">Rozwiń plan</label>
+        <label for="extend">Rozwiń cały plan</label>
       </p>
       
     </div>

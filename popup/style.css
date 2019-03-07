@@ -1,33 +1,43 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   
   text-align: left;
   
-  margin: 1em;
+  margin: 0;
+  padding: 0;
   
   min-width: 15em;
   max-width: 15em;
   min-height: 25em;
+
+  background: #eee;
 }
 
 a {
   text-decoration: none;
-  color: #999;
+  color: #0191f1;
 }
 
 a:hover {
-  color: #666;
+  color: #013157;
 }
 
 .logo {
   position: relative;
-  height: 50px;
-  
-  border-bottom: 1px solid #aaa;
+  height: calc(50px + 2em);
+
+  padding: 1em;
+
+  background: #eee;
 }
 
 .logo img {
+  margin-top: 0.5em;
   margin-right: 0;
 }
 
@@ -38,18 +48,10 @@ a:hover {
   float: right;
 }
 
-.logo #author {
+.logo #info {
   position: absolute;
-  top: 0;
-  right: 0;
-  
-  font-size: 10px;
-}
-
-.logo #version {
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 1em;
+  right: 1em;
   
   font-size: 9px;
 }
@@ -57,8 +59,13 @@ a:hover {
 .tools {
   position: relative;
   width: 15em;
-  margin-top: 0.3em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   min-height: 1em;
+
+  padding: 1em;
+
+  background: #fff;
 }
 
 .left {
@@ -75,50 +82,42 @@ a:hover {
   text-align: right;
 }
 
-.settings p {
+.filter {
+  padding: 1em;
+  margin-bottom: 0.5em;
+
+  background: #fff;
+}
+
+.number-input {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+}
+
+.filter > p {
   position: relative;
+  height: 1.5em;
 }
 
-.settings #filter {
-  padding-top: 1em;
+.filter input[type="number"] {
+  width: 32px;
+  border: none;
+  font-size: 14px;
+  margin-top: -0.7em;
 }
 
-.groups {
-  text-align: center;
-  
-  padding-bottom: 1em;
-  margin-bottom: 0;
-  border-bottom: 1px solid #aaa;
+.filter .glabel {
+  text-align: left;
+  flex: 1;
 }
 
-.groups p {
-  position: relative;
-  height: 1em;
-}
+.settings {
+  padding: 1em;
+  margin-bottom: 0.5em;
 
-.glabel {
-  position: absolute;
-  top: 5px;
-  left: 2em;
-  
-  text-align: right;
-  width: 3em;
-}
-
-.group {
-  position: absolute;
-  left: 7em;
-  
-  width: 50px;
-}
-
-#delbutt {
-  display: none;
-}
-
-.secondary {
-  color: #666666;
-  font-size: 90%;
+  background: #fff;
 }
 
 .tooltip {

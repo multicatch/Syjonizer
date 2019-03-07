@@ -10,49 +10,46 @@
     <div class="logo">
       <img class="logoblock" src="../icons/syjonizer-48.png">
       <h1 class="logoblock" id="title">Syjonizer</h1>
-      <span id="author"><a href="https://cezaryregec.pl">Cezary Regec Design</a></span>
-      <span id="version">0.4.3</span>
+      <span id="info"><span id="author"><a href="https://cezaryregec.pl">Cezary Regec</a></span> <span id="version">0.5.0</span></span>
     </div>
     
     <div class="tools">
-      <div class="left">
-      </div>
-      
-      <div class="right">
         <a href="#" id="savebutt">Zapisz plan</a>
-        <button id="delbutt">Usuń zapis</button>
-      </div>
-      
     </div>
     
+    <div class="filter">
+      <p class="number-input">
+        <span class="glabel">
+            <span class="tooltip">Grupa LB
+              <span class="tooltiptext">Grupa laboratoryjna</span>
+            </span>
+        </span> <input id="lbgroup" class="group" type="number" min="0" value="0">
+      </p>
+
+      <p class="number-input">
+        <span class="glabel">
+            <span class="tooltip">Grupa KW
+              <span class="tooltiptext">Grupa konwersatoryjna</span>
+            </span>
+        </span> <input id="kwgroup" class="group" type="number" min="0" value="0">
+      </p>
+
+      <p>
+        <input id="manual" type="checkbox">
+        <label for="manual">
+            <span class="tooltip">Ręcznie
+              <span class="tooltiptext">Z planu zostaną usunięte niezaznaczone bloczki</span>
+            </span>
+        </label>
+      </p>
+
+      <p>
+        <input id="manual-pr" type="checkbox" disabled>
+        <label for="manual-pr">Ogłoszenia</label>
+      </p>
+    </div>
+
     <div class="settings">
-      <div class="groups">
-        <p>
-          <span class="glabel">LB:</span> <input id="lbgroup" class="group" type="number" min="0" value="0">
-        </p>
-
-        <p>
-          <span class="glabel">KW:</span> <input id="kwgroup" class="group" type="number" min="0" value="0">
-        </p>
-        
-        <div id="filter">
-          <p> 
-            <input id="manual" type="checkbox">
-            <label for="manual">
-              <span class="tooltip">Ręcznie
-                <span class="tooltiptext">Z planu zostaną usunięte niezaznaczone bloczki</span>
-              </span>
-            </label>
-          </p>
-
-          <p>
-            <input id="manual-pr" type="checkbox" disabled>
-            <label for="manual-pr">Ogłoszenia</label>
-          </p>
-        </div>
-      </div>
-      
-       
       <p>
         <input id="toolbar" type="checkbox">
         <label for="toolbar">Autoukrywanie paska</label>
@@ -72,7 +69,6 @@
         <input id="extend" type="checkbox">
         <label for="extend">Rozwiń cały plan</label>
       </p>
-      
     </div>
     
     <script src="syjonize.js"></script>

@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "name": "Syjonizer",
-  "version": "0.4.3",
+  "version": "0.5.0",
   
-  "description": "Ogarnia układ planu zajęć",
+  "description": "Odświeża wygląd planu zajęć UMCS Syjon",
   
   "icons": {
     "32": "icons/syjonizer-32.png",

@@ -15,6 +15,7 @@ var kwgroup = document.getElementById("kwgroup");
 var saveb   = document.getElementById("savebutt");
 var manual  = document.getElementById("manual");
 var info    = document.getElementById("manual-pr");
+var erebor  = document.getElementById("erebor");
 
 //
 // Save all settings
@@ -180,6 +181,21 @@ saveb.addEventListener( 'click', (e) => {
     
   });
 });
+
+erebor.addEventListener('click', (e) => {
+    webext.tabs.query({}, (tabs) => {
+      for (let tab of tabs) {
+        if(tab.url.includes(SYJON_ADDRESS)) {
+          let suffix = '';
+          if (tab.url.includes('students')) {
+            const studentGroup = tab.url.substring(tab.url.lastIndexOf('/') + 1)
+            suffix = '#!s/' + studentGroup
+          }
+          webext.tabs.create({url: 'https://erebor.vpcloud.eu' + suffix})
+        }
+      }
+    });
+})
 
 
 //

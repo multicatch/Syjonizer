@@ -1,4 +1,9 @@
 # Syjonizer
+
+**Project not in active development. It was fun to maintain it when I went to UMCS :)**
+
+**If you're looking for Synonizer 2.0: https://github.com/wiktormalyska/Syjonizer-2.0**
+
 An add-on for Chrome and Firefox compatible browsers which adds very convenient features to the UMCS timetable on a [Syjon website](http://syjon.umcs.lublin.pl/)
 
 ### Downloads
